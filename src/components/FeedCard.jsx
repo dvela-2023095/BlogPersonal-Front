@@ -1,14 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const FeedCard = ({ 
+export const FeedCard = ({ 
     author,
     tittle,
     category,
     text,
     coments,
-    createdAt
+    createdAt,
+    id
  }) => {
-    
+  const navigate = useNavigate()
+  const handleViewDetails=()=>{
+    navigate('/dashboard/details',{
+      state:{
+        tittle,
+        category,
+        text,
+        comments:coments,
+        createdAt,
+        id:id
+      }
+    })
+  }
+  
   return (
     <div className="bg-white p-4 rounded-lg shadow hover:shadow-md transition duration-200">
       
@@ -18,7 +33,6 @@ const FeedCard = ({
             
           </div>
           <div>
-            <p className="font-semibold text-gray-900">{author.name}</p>
             <p className="text-xs text-gray-500">
               { /* Fecha de publicacion */ }
             </p>
@@ -34,15 +48,13 @@ const FeedCard = ({
         {category.name}
       </span>
 
-      {/* Texto */}
-      <p className="text-sm text-gray-700 mb-2">{text}</p>
+      
 
       
-      <div className="text-sm text-gray-500">
-        {/* Comentarios */}
+      <div className="text-sm text-gray-500 text-right hover:text-gray-900" onClick={handleViewDetails}>
+        Ver Detalles
       </div>
     </div>
   );
 };
 
-export default FeedCard;

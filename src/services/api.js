@@ -31,6 +31,24 @@ export const loadFeedRequest =async()=>{
         }
     }
 }
+export const addCommentRequest =async(comment,id)=>{
+    try {
+        return await apiClient.post(`comment/coment/${id}`,comment)
+    } catch (e) {
+        return{error:true,
+        e
+        }
+    }
+}
+export const getCommentsRequest = async(id)=>{
+    try {
+        return await apiClient.get(`opinion/find/${id}`)
+    } catch (e) {
+        return{error:true,
+            e
+        }
+    }
+}
 apiClient.interceptors.request.use(
     (config)=>{
         const userDetails = localStorage.getItem('user')
