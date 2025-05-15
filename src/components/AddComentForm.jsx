@@ -38,6 +38,7 @@ export const AddComentForm = ({id,}) => {
             setCommentError('El comentario  debe tener de 30 a 500 caracteres')
           }else{
             setCommentError('')
+            
           }
         
     }
@@ -45,13 +46,12 @@ export const AddComentForm = ({id,}) => {
 
   useEffect(()=>{
     if(usernameError ==='' && commentError ==='' && username.length!=0 && text.length!=0){
-      console.log('hola');
       
       setDisabled(false)
     }else{
       setDisabled(true)
     }
-  },[username,text])
+  },[username,text,usernameError,commentError])
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow mt-4 space-y-2">
@@ -76,7 +76,7 @@ export const AddComentForm = ({id,}) => {
       />
       <span className=" p-4 w-full rounded shadow mt-4 space-y-2 text-red-500">{commentError}</span>
       <button
-        className="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 text-right"
+        className="bg-blue-600 w-full text-white px-4 py-2 rounded text-sm hover:bg-blue-700 text-center"
         type="submit"
         disabled={disabled}
       >

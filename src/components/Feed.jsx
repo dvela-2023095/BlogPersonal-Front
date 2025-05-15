@@ -11,14 +11,20 @@ export const Feed =()=>{
     const handleNavigateToOpinion=()=>{
 
     }
-    useEffect(()=>{
-        if(filter==='TODOS'){
-                setMyFeed(allFeed)
-        }else{
-                let filteredList = allFeed.filter((post)=> post.category.name === filter)
-                setMyFeed(filteredList)
+    useEffect(() => {
+        if (filter === 'TODOS') {
+            setMyFeed(allFeed);
+        } else if (filter === 'Recientes') {
+            const filteredList = [...allFeed].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            setMyFeed(filteredList);
+        } else if (filter === 'Ultimos') {
+            const filteredList = [...allFeed].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setMyFeed(filteredList);
+        } else {
+            const filteredList = allFeed.filter(post => post.category.name === filter);
+            setMyFeed(filteredList);
         }
-    },[filter])
+    }, [filter, allFeed])
     
     return(
         <>

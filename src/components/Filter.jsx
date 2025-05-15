@@ -14,6 +14,8 @@ export const Filter = () => {
       <option value="Tecnología">Tecnologia</option>
       <option value="Taller">taller</option>
       <option value="Practica Supervisada">Pract. Supervisada</option>
+      <option value="Recientes">Más Reciente Primero</option>
+      <option value="Ultimos">Menos Reciente Primero</option>
     </select>
   );
 };
